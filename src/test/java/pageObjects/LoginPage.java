@@ -6,10 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+import utils.CommonUtils;
+
+
+
+public class LoginPage extends CommonUtils{
 
 	WebDriver driver;
 	public LoginPage(WebDriver driver) {
+		
+		super(driver);
 		//initialization
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -17,7 +23,7 @@ public class LoginPage {
 	
 	
 	@FindBy(id="userEmail")
-	WebElement username;
+	WebElement userName;
 	
 	@FindBy(id="userPassword")
 	WebElement password;
@@ -25,4 +31,13 @@ public class LoginPage {
 	@FindBy(id="login")
 	WebElement loginButton;
 	
+	
+	public void loginApplication(String username,String Password) {
+		userName.sendKeys(username);
+		password.sendKeys(Password);
+		loginButton.click();
+	}
+	public void launchURL() {
+		driver.get("https://rahulshettyacademy.com/client");
+	}
 }
